@@ -519,14 +519,6 @@ export default {
       this.x = 0;
       this.y = 0;
 
-      // var testload = {x:500, y:200}
-      // this.x=testload.x
-      // this.y=testload.y
-      // _this.addDragBox(testload)
-      // _this.drawLine()
-
-      // this.indexImg
-      // console.log(document.getElementById("main-box"));
       console.log("load tag!")
       // console.log(this.dataGet)
       for (let i = 0; i < this.dataGet[0].data.length; i++) {
@@ -536,15 +528,6 @@ export default {
           // console.log("i is "+i)
           // console.log("j is "+j)
           // console.log(this.dataGet[0].data[i].coordinator[j])
-
-          // var load={x:this.dataGet[0].data[i].coordinator[j].lineStartX, y:this.dataGet[0].data[i].coordinator[j].lineStartY}
-          // this.x=load.x
-          // this.y=load.y
-
-          // console.log("imageName is ")
-          // console.log(this.dataGet[0].data[i].imageName)
-          // console.log("index of ")
-          // console.log(this.dataGet[0].animal.completeImagePath.indexOf(this.dataGet[0].data[i].imageName))
           this.firstPut.push({
             pic: this.dataGet[0].animal.completeImagePath.indexOf(this.dataGet[0].data[i].imageName), 
             //`${event.x}${Math.ceil(event.y)}${this.indexImg}`
@@ -569,8 +552,8 @@ export default {
           //   LineToY: to.y,
         }
       }
-      console.log("firstput")
-      console.log(this.firstPut)
+      // console.log("firstput")
+      // console.log(this.firstPut)
       // console.log(this.firstPut.length)
       for (let k = 0; k < this.firstPut.length; k++) {
         var load = {
@@ -600,38 +583,12 @@ export default {
           _this.addDragBox(load, this.firstPut[k].title);
           // _this.drawLine();
         }
-        // console.log("createJson is")
-        // var test = document.getElementById(id);
-        // console.log(test.__vue__.axis)
-        // console.log("axis")
-        // var change = document.getElementById(this.firstPut[k].id)
-        // console.log(change.__vue__)
       }
-      // console.log("End load tag");
-      // console.log("load tag firstput is")
-      // console.log(this.firstPut)
-
-      // for (let i = 0; i < this.dataGet[0].data[this.indexImg].coordinator.length; i++) {
-      //   var load={x:this.dataGet[0].data[this.indexImg].coordinator[i].lineStartX, y:this.dataGet[0].data[this.indexImg].coordinator[i].lineStartY}
-      //   this.x=load.x
-      //   this.y=load.y
-      //   _this.addDragBox(load, this.dataGet[0].data[this.indexImg].coordinator[i].title)
-      //   _this.drawLine()
-
-      //   this.addList.push({
-      //   id: load.x + Math.ceil(load.y),
-      //   x: load.x,
-      //   y: load.y,
-      //   name: this.dataGet[0].data[this.indexImg].coordinator[i].title,
-      //   pic: this.indexImg,
-      // });
-
-      // }
     },
     initData() {
       let _this = this;
       this.dataGet[0] = this.animaldata;
-      console.log("init data time out 200")
+      console.log("set init data time out 200")
       // console.log("---------")
       // this.dataGet[0] = this.animaldata;
 
@@ -640,55 +597,40 @@ export default {
     },
   },
   beforeCreate(){
-    console.log("--------------- before create ---------------")
-    this.dataGet=[];
-    this.thaiName = this.$route.params.thaiName;
-    this.animalName = this.$route.params.animalName;
-    this.id = this.$route.params.animalID;
-    this.englishName = this.$route.params.englishName;
-    console.log(this.thaiName);
-    console.log(document.readyState)
-    /*
-    axios
-      //http://202.28.24.50:3000/ 
-      //http://localhost:3000/animal/bone/web/
+    // console.log("----------- before create -----------")
+    // this.dataGet=[];
+    // this.thaiName = this.$route.params.thaiName;
+    // this.animalName = this.$route.params.animalName;
+    // this.id = this.$route.params.animalID;
 
-      // Real IP DB         : "http://202.28.24.50:3000/animal/bone/web/"
-      // P pond DB On Local : "http://localhost:3000/animal/bone/web/"
-      // My DB              : "http://localhost:4000/getAnimalName/"
-      .get("http://localhost:4000/getAnimalName/" + this.id)
-      .then((Response) => {
-        this.animaldata = Response.data;
-        console.log("current get is")
-        console.log(this.animaldata)
-        this.imgLoadList = this.animaldata.animal.completeImageLink;
-        this.imgLength = this.animaldata.animal.completeImageLink.length;
-        // this.scienceName = this.animaldata.animal.scienceName;
-        // this.technicalTerm = this.animaldata.animaldata.technicalTerm;
-        // this.dataGet[0].animal.completeImageLink
-        // console.log(this.animaldata.animal.thaiName);
-        // this.initData();
-      })
-      .then(
-        console.log("--------------- complete before create ---------------")
-        );
-        */
+
+    // this.englishName = this.$route.params.englishName;
+    // console.log(this.thaiName);
+    // console.log(document.readyState)
   },
   mounted(){
     // this.loadTag()
     // console.log(document.getElementById("click-box"))
   },
-  // watch(){},
   created() {
-    //fetch data from api here
-    // this.ben="546355";
-    
-    console.log("---------------- create --------------")
+    // console.log("---------------- create --------------")
     this.dataGet=[];
     this.thaiName = this.$route.params.thaiName;
     this.animalName = this.$route.params.animalName;
     this.id = this.$route.params.animalID;
-    this.englishName = this.$route.params.englishName;
+
+    this.animaldata = this.$route.params.animalData;
+    this.imgLoadList = this.$route.params.imgLoadList;
+    this.imgLength = this.$route.params.imgLength;
+    // console.log(this.$route.params.animalData)
+    // console.log(this.$route.params.imgLoadList)
+    // console.log(this.$route.params.imgLength)
+    this.initData();
+
+
+
+/*
+    // this.englishName = this.$route.params.englishName;
     // console.log(this.thaiName);
     axios
     //   //http://202.28.24.50:3000/ 
@@ -700,8 +642,8 @@ export default {
       .get("http://localhost:4000/getAnimalName/" + this.id)
       .then((Response) => {
         this.animaldata = Response.data;
-        console.log("create current get is")
-    //     console.log(this.animaldata)
+        // console.log("create current get is")
+        // console.log(this.animaldata)
         this.imgLoadList = this.animaldata.animal.completeImageLink;
         this.imgLength = this.animaldata.animal.completeImageLink.length;
         // this.scienceName = this.animaldata.animal.scienceName;
@@ -718,32 +660,7 @@ export default {
         this.initData();
         // this.loadTag();
       });
-      
-    // this.dataGet = [];
-    // this.id = this.$route.params.animalID;
-    // this.animalName = this.$route.params.animalName;
-    // axios
-    //   //http://202.28.24.50:3000/ 
-    //   //http://localhost:3000/animal/bone/web/
-
-    //   // Real IP DB         : "http://202.28.24.50:3000/animal/bone/web/"
-    //   // P pond DB On Local : "http://localhost:3000/animal/bone/web/"
-    //   // My DB              : "http://localhost:4000/getAnimalName/"
-    //   .get("http://localhost:4000/getAnimalName/" + this.id)
-    //   .then((Response) => {
-    //     this.animaldata = Response.data;
-    //     console.log("current get is")
-    //     console.log(this.animaldata)
-    //     this.imgLoadList = this.animaldata.animal.completeImageLink;
-    //     this.imgLength = this.animaldata.animal.completeImageLink.length;
-    //     // this.dataGet[0].animal.completeImageLink
-    //     // console.log(this.animaldata.animal.thaiName);
-        // this.initData();
-    //     // console.log(this.animaldata.animal);
-    //     // console.log("current dataget is")
-    //     // console.log(this.dataGet)
-    //   });
-    // axios.get("http://localhost:3000/animal/get-all-animal-name").then(Response => this.animalGet = Response.data)
+      */
   },
   
 };

@@ -117,39 +117,6 @@ export default {
       // console.log(this.completeImgfilter)
 
       },
-
-    //เอาไว้เช็คเงื่อนไขใน Future work
-    /*
-    async pullData(){
-      var a=[];
-      var b=[];
-      for(var i=0;i<parseInt(this.animalGet.length);i++){
-        await axios.get("http://localhost:4000/getAnimalName/" + this.animalGet[i]._id)
-        .then((Response) => {
-          var animaldata = Response.data;
-
-          //ถ้ามีรูป และ Tag
-          if(animaldata.animal.completeImageLink.length > 0 && animaldata.data.length > 0){
-            // a.push({"englishName":animaldata.animal.englishName})
-            a.push(animaldata.animal.englishName)
-            // console.log(animaldata.animal.englishName)
-          }
-        })
-      }
-      
-      console.log("a =: "+a)
-      // console.log(a[0].englishName)
-
-      for(var j=0;j<parseInt(this.animalGet.length);j++){
-        if(this.animalGet[j].englishName == a[j]){
-          b.push(this.animalGet[j])
-        }
-      }
-      console.log("b =: ")
-      console.log(b)
-      this.completeImgfilter=b
-    },*/
-
     goToModify(){
       this.$router.push({
         name: "modify",
@@ -157,21 +124,41 @@ export default {
       });
     },
     goToPage(englishName, _id, thaiName) {
-      console.log("U click");
+      // console.log("U click");
 
       
       //Get animal from id Here! สำหรับเช็คเงื่อนไข
       let _this= this
       _this.get(_id, englishName, thaiName)
     },
-    get(_id, englishName, thaiName){
-      console.log(_id)
-      console.log(englishName)
-      console.log(this.animalGet)
-      this.$router.push({
+    async get(_id, englishName, thaiName){
+      console.log(thaiName)
+      var pullData = await axios.get("http://localhost:4000/getAnimalName/" + _id).then(Response => Response.data)
+      // console.log(pullData)
+      if(pullData.animal.completeImageLink.length > 0 && pullData.data.length > 0){
+        this.$router.push({
           name: "views-data",
-          params: { animalName: englishName, animalID: _id, thaiName:thaiName},
+          params: { 
+            animalName: englishName, 
+            animalID: _id, 
+            thaiName:thaiName, 
+            animalData:pullData,
+            imgLoadList:pullData.animal.completeImageLink,
+            imgLength:pullData.animal.completeImageLink.length,
+            },
         });
+      }
+      else{
+        window.alert(englishName+" is under maintenance!");
+      }
+
+      // console.log(_id)
+      // console.log(englishName)
+      // console.log(this.animalGet)
+      // this.$router.push({
+      //     name: "views-data",
+      //     params: { animalName: englishName, animalID: _id, thaiName:thaiName},
+      //   });
     }
   },
   created(){
