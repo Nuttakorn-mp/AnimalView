@@ -51,6 +51,10 @@ export default {
   components:{},
   data: () => {
     return {
+      // Real IP DB         : "http://202.28.24.50:3000/animal/get-all-animal-name" --- อันนี้ฝั่งสัตวแพทย์ปิดเซฟอยู่
+      // P pond DB On Local : "http://localhost:3000/animal/get-all-animal-name"  --- ใช้อันนี้ทดสอบไปก่อน
+      // My DB              : "http://localhost:4000/getAnimalName/" --อันนี้ที่ทำเอง
+      apiLink:"",
       test: false,
 
       searchInput: "",
@@ -117,12 +121,6 @@ export default {
       // console.log(this.completeImgfilter)
 
       },
-    goToModify(){
-      this.$router.push({
-        name: "modify",
-        // params: { animalID: this.id,},
-      });
-    },
     goToPage(englishName, _id, thaiName) {
       // console.log("U click");
 
@@ -133,7 +131,8 @@ export default {
     },
     async get(_id, englishName, thaiName){
       console.log(thaiName)
-      var pullData = await axios.get("http://localhost:4000/getAnimalName/" + _id).then(Response => Response.data)
+      var pullData = await axios.get(this.apiLink+"/"+"getAnimalName"+"/"+ _id).then(Response => Response.data)
+      // var pullData = await axios.get("http://localhost:4000/getAnimalName/" + _id).then(Response => Response.data)
       // console.log(pullData)
       if(pullData.animal.completeImageLink.length > 0 && pullData.data.length > 0){
         this.$router.push({
@@ -162,15 +161,12 @@ export default {
     }
   },
   created(){
-    // Real IP DB         : "http://202.28.24.50:3000/animal/get-all-animal-name" --- อันนี้ฝั่งสัตวแพทย์ปิดเซฟอยู่
-    // P pond DB On Local : "http://localhost:3000/animal/get-all-animal-name"  --- ใช้อันนี้ทดสอบไปก่อน
-    // My DB              : "http://localhost:4000/getAnimalName/" --อันนี้ที่ทำเอง
-    axios.get("http://localhost:4000/getAnimalName/").then(Response => {
+    this.apiLink = "http://192.168.1.106:4000";
+    axios.get(this.apiLink+"/"+"getAnimalName"+"/").then(Response => {
+    // axios.get("http://localhost:4000/getAnimalName/").then(Response => {
       this.animalGet = Response.data
       // console.log("view ------------------------")
       // console.log(this.animalGet)
-      
-      // this.pullData()
       this.check()
       })
   }

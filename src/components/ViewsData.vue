@@ -25,7 +25,7 @@
     <div class="descriptionBox">
       <p>Thai Name : {{ this.animaldata.animal.thaiName}}</p>
       <p class="englishName">English Name : {{this.animaldata.animal.englishName}}</p>
-      <p>Science Name : {{this.animaldata.animal.scienceName}}</p>
+      <p>Scientific Name : {{this.animaldata.animal.scienceName}}</p>
       <p class="technicalTerm">Technical Term : {{this.animaldata.animal.technicalTerm}}</p>
       <p>Description : {{this.animaldata.animal.description}}</p>
     </div>
@@ -47,18 +47,6 @@ import axios from "axios";
 Vue.use(Router);
 Vue.use(VueSimpleAlert);
 Vue.use(VueAxios, axios);
-
-// window.onload = function() {
-//    setTimeout(loadAfterTime, 2000)
-// }; 
-// function loadAfterTime(){
-//   console.log("Load after delay 2s")
-//   // this.element = document.getElementById("click-box")
-//   // console.log("element : ",this.element)
-//   // this.loadTag()
-
-// }
-
 export default {
   name: "viewdata",
   components: {
@@ -160,14 +148,14 @@ export default {
           // console.log("Y: "+yCal)
         }
 
-        console.log("addList count : "+this.addList.length)
-        console.log("check dup");
+        // console.log("addList count : "+this.addList.length)
+        // console.log("check dup");
         for (let i = 0; i < this.addList.length; i++) {
           // console.log(this.addList[i]);
           // console.log(this.addList.length);
           if (document.getElementById(this.addList[i].id)!=null) {
             if(Math.abs(this.addList[i].y - event.y) < 71 && Math.abs(this.addList[i].x - event.x) < 10){ // ตรง71 คือ รัศมีรอบๆจุดที่กด
-              console.log("<");
+              // console.log("<");
               if (this.addList[i].y> event.y) {yCal = yCal-(25);}
               else{yCal = yCal+(25);}
             }
@@ -248,18 +236,13 @@ export default {
         if(stat == null){
           console.log("------------------------")
           console.log("stat is Null !!!!")
-          // console.log(stat)
-          // console.log(document.getElementById("click"))
           console.log("------------------------")
         }
-        // console.log("stat : ");
-        // console.log(stat);
         let vueContainer = document.createElement("span");
         stat.appendChild(vueContainer);
         app.$mount(vueContainer);
 
         /**************************************************************************/
-        // this.$nextTick(console.log("nextTick2 is run "));
         this.addList.push({
           id: `${event.x}${Math.ceil(event.y)}${this.indexImg}`,
           x: event.x,
@@ -267,22 +250,11 @@ export default {
           name: titleDefault,
           pic: this.indexImg,
         });
+        /**************************************************************************/
 
         let _this = this;
         _this.drawLine(xCal,yCal);
       // } //END IF CHECK DUP ID
-      // else {
-      //   console.log("Duplicate Id!!!!");
-      // }
-
-      // console.log("element is")
-      // var check = document.getElementById(`${event.x + Math.ceil(event.y)}P${this.indexImg}`);
-      // console.log(check.__vue__.axis)
-      // console.log("load addlist")
-      // console.log(this.addList)
-      // console.log(event.y)
-      // console.log(event.x)
-      /**************************************************************************/
     },
     imgLoad() {
       // console.log("this.$data.indexImg :"+this.$data.indexImg)
@@ -427,7 +399,7 @@ export default {
         // deg = -135;
         // console.log(xCal);
         // console.log(yCal);
-        console.log(`${this.x}${Math.ceil(this.y)}${this.indexImg}`);
+        // console.log(`${this.x}${Math.ceil(this.y)}${this.indexImg}`);
 
         //xDistance = this.x - (xCal+15+(letter*8.5) ) => 15 is mean size of delete button
         xDistance =Math.abs(this.x-(xCal+5+document.getElementById(`${this.x}${Math.ceil(this.y)}${this.indexImg}`).__vue__._data.createList[0].title.length*8.5));
@@ -562,15 +534,14 @@ export default {
         };
         this.x = load.x;
         this.y = load.y;
-        console.log("--------firstput--------")
+        // console.log("--------firstput--------")
         // console.log(this.firstPut[k]);
         if (this.firstPut[k].pic > 0) {
           // console.log("k is "+k);
           this.indexImg = this.firstPut[k].pic;
           // console.log(this.indexImg);
-          console.log("condition 1");
+          // console.log("condition 1");
           _this.addDragBox(load, this.firstPut[k].title);
-          // _this.drawLine();
           // console.log("id "+this.firstPut[k].id)
           document.getElementById(this.firstPut[k].id).__vue__.show = false;
           document.getElementById(
@@ -579,9 +550,8 @@ export default {
           this.indexImg = 0;
           
         } else {
-          console.log("condition 2");
+          // console.log("condition 2");
           _this.addDragBox(load, this.firstPut[k].title);
-          // _this.drawLine();
         }
       }
     },
