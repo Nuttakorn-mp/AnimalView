@@ -1,22 +1,14 @@
 <template>
   <div id="app">
-    <!-- <p>aaaaaaaaaaaa</p> -->
-    <!-- <p class="header-name">
-      <img src="./assets/original.png" style="width: 269px" />
-    </p> -->
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> C:\Users\Admin\Desktop\view\client-side\src\assets\original.png-->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
   }
 }
 </script>

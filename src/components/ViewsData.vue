@@ -267,8 +267,8 @@ export default {
       this.$data.indexImg = (this.$data.indexImg + 1) % this.imgLength; //17; //เดี๋ยวรอนับจนรูปแล้วเอามา mod
       // console.log("value index is " + this.$data.indexImg);
       if(this.animalName =="Arapaima"){
-        console.log("name : ",this.animalName)
-        console.log("set milisecond")
+        // console.log("name : ",this.animalName)
+        // console.log("set milisecond")
         this.millisecond = 100;
       }
       else{
@@ -302,17 +302,6 @@ export default {
       }
 
       }, this.millisecond);
-      /*
-      for (let i = 0; i < this.addList.length; i++) {
-        const element = this.addList[i];
-        // console.log(element.id)
-        // console.log(document.getElementById(element.id).__vue__.createList[0])
-        this.addList[i].name = document.getElementById(
-          element.id
-        ).__vue__.createList[0].title;
-        // document.getElementById(element.id).__vue__.show=false
-      }
-      console.log(this.addList);*/
     },
     prevImg() {
       if (this.$data.indexImg == 0) {
@@ -322,8 +311,8 @@ export default {
       }
       // console.log("value index is " + this.$data.indexImg);
       if(this.animalName =="Arapaima"){
-        console.log("name : ",this.animalName)
-        console.log("set milisecond")
+        // console.log("name : ",this.animalName)
+        // console.log("set milisecond")
         this.millisecond = 100;
       }
       else{
@@ -358,13 +347,6 @@ export default {
       }, this.millisecond);
       // console.log("value index is " + this.$data.indexImg);
 
-      // for (let i = 0; i < this.addList.length; i++) {
-      //   const element = this.addList[i];
-      //   // console.log(element.id)
-      //   // console.log(document.getElementById(element.id).__vue__.createList[0])
-      //   this.addList[i].name=document.getElementById(element.id).__vue__.createList[0].title
-      // }
-      // console.log(this.addList)
     },
     drawLine(xCal,yCal) {
       // console.log(xCal);

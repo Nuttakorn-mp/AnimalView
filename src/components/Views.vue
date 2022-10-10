@@ -45,7 +45,6 @@ Vue.use(VueAxios, axios);
 
 
 
-
 export default {
   name: "views",
   components:{},
@@ -55,6 +54,7 @@ export default {
       // P pond DB On Local : "http://localhost:3000/animal/get-all-animal-name"  --- ใช้อันนี้ทดสอบไปก่อน
       // My DB              : "http://localhost:4000/getAnimalName/" --อันนี้ที่ทำเอง
       apiLink:"",
+      apiCommand_GetAllAnimalName:"",
       test: false,
 
       searchInput: "",
@@ -131,7 +131,7 @@ export default {
     },
     async get(_id, englishName, thaiName){
       console.log(thaiName)
-      var pullData = await axios.get(this.apiLink+"/"+"getAnimalName"+"/"+ _id).then(Response => Response.data)
+      var pullData = await axios.get(this.apiLink+this.apiCommand_GetAllAnimalName+"/"+ _id).then(Response => Response.data)
       // var pullData = await axios.get("http://localhost:4000/getAnimalName/" + _id).then(Response => Response.data)
       // console.log(pullData)
       if(pullData.animal.completeImageLink.length > 0 && pullData.data.length > 0){
@@ -150,19 +150,12 @@ export default {
       else{
         window.alert(englishName+" is under maintenance!");
       }
-
-      // console.log(_id)
-      // console.log(englishName)
-      // console.log(this.animalGet)
-      // this.$router.push({
-      //     name: "views-data",
-      //     params: { animalName: englishName, animalID: _id, thaiName:thaiName},
-      //   });
     }
   },
   created(){
     this.apiLink = "http://192.168.1.106:4000";
-    axios.get(this.apiLink+"/"+"getAnimalName"+"/").then(Response => {
+    this.apiCommand_GetAllAnimalName = "/getAnimalName";
+    axios.get(this.apiLink+this.apiCommand_GetAllAnimalName).then(Response => {
     // axios.get("http://localhost:4000/getAnimalName/").then(Response => {
       this.animalGet = Response.data
       // console.log("view ------------------------")
