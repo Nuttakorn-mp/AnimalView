@@ -29,8 +29,6 @@
       <p>Description : {{this.animaldata.animal.description}}</p>
     </div>
     
-
-    <!-- <p class="description">description : {{this.animaldata.animal.description}}</p> -->
   </div>
 </template>
 
@@ -547,22 +545,6 @@ export default {
       // _this.loadTag();
     },
   },
-  beforeCreate(){
-    // console.log("----------- before create -----------")
-    // this.dataGet=[];
-    // this.thaiName = this.$route.params.thaiName;
-    // this.animalName = this.$route.params.animalName;
-    // this.id = this.$route.params.animalID;
-
-
-    // this.englishName = this.$route.params.englishName;
-    // console.log(this.thaiName);
-    // console.log(document.readyState)
-  },
-  mounted(){
-    // this.loadTag()
-    // console.log(document.getElementById("click-box"))
-  },
   created() {
 
     //ถ้า F5 แล้ว propที่ส่งมาจากหน้าแรกจะหาย ==> ส่งกลับหน้าแรก
@@ -578,45 +560,8 @@ export default {
     this.animaldata = this.$route.params.animalData;
     this.imgLoadList = this.$route.params.imgLoadList;
     this.imgLength = this.$route.params.imgLength;
-    // console.log(this.$route.params.animalData)
-    // console.log(this.$route.params.imgLoadList)
-    // console.log(this.$route.params.imgLength)
     this.initData();
 
-
-
-/*
-    // this.englishName = this.$route.params.englishName;
-    // console.log(this.thaiName);
-    axios
-    //   //http://202.28.24.50:3000/ 
-    //   //http://localhost:3000/animal/bone/web/
-
-    //   // Real IP DB         : "http://202.28.24.50:3000/animal/bone/web/"
-    //   // P pond DB On Local : "http://localhost:3000/animal/bone/web/"
-    //   // My DB              : "http://localhost:4000/getAnimalName/"
-      .get("http://localhost:4000/getAnimalName/" + this.id)
-      .then((Response) => {
-        this.animaldata = Response.data;
-        // console.log("create current get is")
-        // console.log(this.animaldata)
-        this.imgLoadList = this.animaldata.animal.completeImageLink;
-        this.imgLength = this.animaldata.animal.completeImageLink.length;
-        // this.scienceName = this.animaldata.animal.scienceName;
-        // this.technicalTerm = this.animaldata.animaldata.technicalTerm;
-        // this.dataGet[0].animal.completeImageLink
-        // console.log(this.animaldata.animal.thaiName);
-
-        // this.initData();
-
-        // this.dataGet[0] = this.animaldata;
-
-        // console.log(this.dataGet[0]);
-        // console.log(document.getElementById('click-box'))
-        this.initData();
-        // this.loadTag();
-      });
-      */
   },
   
 };
@@ -628,12 +573,10 @@ export default {
   position: relative;
   top: 50px;
   left: 50px;
-  /* padding: center; */
   width: 600px;
   height: 400px;
   border: 1px solid red;
 }
-/*-------------------------------------------------------------------------------------------------- */
 .blank {
   width: 100%;
   height: 700px;
@@ -647,7 +590,6 @@ export default {
   height: 450px;
   background-color: black;
   border: 1px solid blue;
-  /* z-index: 1; */
 }
 .main-box {
   position: absolute;
@@ -655,24 +597,17 @@ export default {
   top: 106px;
   width: 950px;
   height: 520px;
-  /* border: 1px solid black; */
-  /* background-color: rgb(166, 247, 243); */
 }
 .img-box {
   position: absolute;
   top: 25px;
   left: 100px;
   align-self: center;
-  /* padding: center; */
   width: 600px;
   height: 400px;
-  /* border: 1px solid red; */
 }
 .pic-size {
-  /*width: inherit;*/
   height: inherit;
-  /* width: 400px; */
-  /* width: 60%; */
   margin: auto;
   display: block;
 }
@@ -702,7 +637,6 @@ export default {
   position: relative;
   left: -20px;
   text-align: center;
-  /* top: 60px; */
   font-size: xx-large;
   font: bold;
   color: black;
@@ -738,7 +672,6 @@ export default {
   padding-left: 10px;
   padding-right: 10px;
   width: 910px;
-  /* height: 180px; */
   position: absolute;
   top: 640px;
   left: 280px;
@@ -746,9 +679,6 @@ export default {
   text-align-last: left;
   font-size: 20px;
   border-radius: 10px;
-  /* font-weight: bold; */
-  /* text-align: ; */
-  /* background-color: violet; */
 }
 .englishName{
   position: absolute;
