@@ -1,6 +1,5 @@
 <template>
   <div class="blank">
-    <!-- <div id="aaa" ref="bbb">aaaaaa</div> -->
 
     <p class="header-name" style="left: 80px; top: -5px"> <img src="../assets/original.png" style="width: 269px" /> </p>
     <p class="animal-name">{{ $route.params.animalName }}</p>
@@ -565,6 +564,11 @@ export default {
     // console.log(document.getElementById("click-box"))
   },
   created() {
+
+    //ถ้า F5 แล้ว propที่ส่งมาจากหน้าแรกจะหาย ==> ส่งกลับหน้าแรก
+    if(typeof this.$route.params.animalName == 'undefined'){this.$router.replace("/Views");}
+
+
     // console.log("---------------- create --------------")
     this.dataGet=[];
     this.thaiName = this.$route.params.thaiName;

@@ -25,13 +25,19 @@
                   {{item.englishName}}
                 </article>
               </mouse-in>
-              
               <div class="data"></div>
             </div>
-            
+            <div v-if="this.completeImgfilter.length == 0 && this.db_available_status == true" style="text-align:center;">
+              <pre> </pre>
+              Loading...
+            </div>
+            <div v-if="this.db_available_status == false" style="text-align:center;">
+              <pre> </pre>
+              database is offline
+            </div>
           </div>
         </div>
-        <!-- <div class="test">{{this.animalNameGet}} <div>----{{this.animalGet}}</div></div> -->
+        <!-- <div class="test">{{this.animalNameGet}}</div> -->
       </div>
     </div>
 </template>
@@ -55,7 +61,8 @@ export default {
       // My DB              : "http://localhost:4000/getAnimalName/" --อันนี้ที่ทำเอง
       apiLink:"",
       apiCommand_GetAllAnimalName:"",
-      test: false,
+      apicommand_GetAnimal_by_id:"",
+      db_available_status: true,
 
       searchInput: "",
       newline: "\n",
@@ -97,6 +104,7 @@ export default {
     
   },
   methods: {
+    /*
     check(){
       // let _this=this;
       this.templist = this.animalGet;
@@ -109,7 +117,7 @@ export default {
         // }
         this.bonefilter.push(this.templist[i]);
       }
-      console.log("bonefilter done")
+      // console.log("bonefilter done")
       // console.log(this.bonefilter)
       for (let i = 0; i < parseInt(this.bonefilter.length); i++) {
         // if (this.bonefilter[i].completeImage == true) {
@@ -117,10 +125,19 @@ export default {
         // }
         this.completeImgfilter.push(this.bonefilter[i]);
       }
-      console.log("completeImgfilter done")
+      // console.log("completeImgfilter done")
       // console.log(this.completeImgfilter)
 
       },
+    */
+    filter_out_animal_not_ready(){
+      for (let i = 0; i < parseInt(this.animalGet.length); i++) {
+        if(this.animalGet[i].bone == true && this.animalGet[i].completeImage ==true){
+          this.completeImgfilter.push(this.animalGet[i])
+        }
+      }
+      
+    },
     goToPage(englishName, _id, thaiName) {
       // console.log("U click");
 
@@ -130,10 +147,20 @@ export default {
       _this.get(_id, englishName, thaiName)
     },
     async get(_id, englishName, thaiName){
-      console.log(thaiName)
-      var pullData = await axios.get(this.apiLink+this.apiCommand_GetAllAnimalName+"/"+ _id).then(Response => Response.data)
-      // var pullData = await axios.get("http://localhost:4000/getAnimalName/" + _id).then(Response => Response.data)
-      // console.log(pullData)
+      // console.log(thaiName)
+      // console.log(this.apiLink+this.apicommand_GetAnimal_by_id+"/"+ _id)
+      var pullData = await axios.get(this.apiLink+this.apicommand_GetAnimal_by_id+"/"+ _id,{timeout:500})
+      .then(Response => Response.data)
+      .catch(err=>{
+        if(err.code == 'ECONNABORTED'){Promise.reject(err)}
+        console.log("conncection error")
+        this.completeImgfilter=[]
+        this.db_available_status=false
+      })
+      
+
+
+
       if(pullData.animal.completeImageLink.length > 0 && pullData.data.length > 0){
         this.$router.push({
           name: "views-data",
@@ -152,7 +179,40 @@ export default {
       }
     }
   },
-  created(){
+async created(){
+  // console.log(this.completeImgfilter.length)
+
+  //ลองยิง db ส่วนตัว : ถ้าไม่เจอภายใน 500 ms ==>  close
+  var res = await axios.get("http://localhost:4000"+"/getAnimalName",{timeout : 500})
+  .then(Response => Response)
+  .catch(err=>{
+    if(err.code == 'ECONNABORTED'){Promise.reject(err)}
+  })
+  if(typeof res  !== 'undefined'){
+    console.log("499 db is online")
+    this.apiLink = "http://localhost:4000";
+    this.apiCommand_GetAllAnimalName = "/getAnimalName";
+    this.apicommand_GetAnimal_by_id = "/getAnimalName";
+    this.animalGet = res.data
+    this.filter_out_animal_not_ready()
+  }
+  else{
+    this.apiLink ="http://localhost:3000";
+    this.apiCommand_GetAllAnimalName="/animal/get-all-animal-name";
+    this.apicommand_GetAnimal_by_id = "/animal/bone/web";
+    axios.get(this.apiLink+this.apiCommand_GetAllAnimalName).then(Response => {
+      console.log("optional db is online")
+      this.animalGet = Response.data
+      this.filter_out_animal_not_ready()
+    })
+    .catch(err =>{
+      if(err.code == 'ECONNABORTED'){Promise.reject(err)}
+      console.log("both db close")
+      this.db_available_status = false
+      console.log(this.db_available_status)
+    })
+  }
+    /*
     this.apiLink = "http://192.168.1.106:4000";
     this.apiCommand_GetAllAnimalName = "/getAnimalName";
     axios.get(this.apiLink+this.apiCommand_GetAllAnimalName).then(Response => {
@@ -162,6 +222,7 @@ export default {
       // console.log(this.animalGet)
       this.check()
       })
+    */
   }
 };
 </script>

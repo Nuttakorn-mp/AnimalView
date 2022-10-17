@@ -9,7 +9,8 @@ import NotFound from '@/components/NotFound';
 Vue.use(Router)
 const routes = [
   {name:'views',path:'/Views', component:Views, props:true},
-  {name:'views-data',path:'/views/:animalName', component:ViewsData, props:true},
+  // {name:'views-data',path:'/views/:animalName', component:ViewsData, props:true},
+  {name:'views-data',path:'/views_animal', component:ViewsData, props:true},
   {path:'/', redirect:'/Views' ,component:Views, props: true},
   { path: "*", component: NotFound }
 ];
