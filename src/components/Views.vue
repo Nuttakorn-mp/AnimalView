@@ -141,7 +141,6 @@ export default {
     }
   },
 async created(){
-  // Real       : http://202.28.24.50:3000
   // P pond DB  : http://localhost:3000/animal/get-all-animal-name
   // My DB      : http://localhost:4000/getAnimalName/
 
