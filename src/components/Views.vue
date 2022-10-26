@@ -175,6 +175,28 @@ async created(){
       console.log(this.db_available_status)
     })
   }
+
+
+
+  // ตั้งค่า และเปิดบรรทัดนี้
+
+  // this.apiLink ="http://localhost:3000";
+  // this.apiCommand_GetAllAnimalName="/animal/get-all-animal-name";
+  // this.apicommand_GetAnimal_by_id = "/animal/bone/web";
+  // axios.get(this.apiLink+this.apiCommand_GetAllAnimalName).then(Response => {
+  //   this.animalGet = Response.data
+  //   this.filter_out_animal_not_ready()
+  // })
+  // .catch(err =>{
+  //   if(err.code == 'ECONNABORTED'){Promise.reject(err)}
+  //   this.db_available_status = false
+  // })
+
+  //ถึงบรรทัดนี้
+
+
+
+
   }
 };
 </script>
