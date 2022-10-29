@@ -2,7 +2,8 @@
     <div class="blank">
     <p class="header-name">Animal name</p>
     <p class="header-name" style="left: 80px; top: -5px">
-      <img src="../assets/original.png" style="width: 269px" />
+      <!-- <img src="../assets/original.png" style="width: 269px" /> -->
+      <img src= "~@/assets/original.png" @error="$event.target.src='/src/assets/original.png'" style="width: 269px" />
     </p>
       <div class="table">
         <div class="search">

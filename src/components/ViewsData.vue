@@ -1,7 +1,8 @@
 <template>
   <div class="blank">
 
-    <p class="header-name" style="left: 80px; top: -5px"> <img src="../assets/original.png" style="width: 269px" /> </p>
+    <!-- <p class="header-name" style="left: 80px; top: -5px"> <img src="../assets/original.png" style="width: 269px" /> </p> -->
+    <p class="header-name" style="left: 80px; top: -5px"> <img src= "~@/assets/original.png" @error="$event.target.src='/src/assets/original.png'" style="width: 269px" /> </p>
     <p class="animal-name">{{ $route.params.animalName }}</p>
 
     <div class="main-box" id="main-box">
@@ -36,12 +37,12 @@
 import Vue from "vue/dist/vue.esm";
 // import Vue from 'vue';
 import draggable from "vuedraggable";
-import Router from "vue-router";
+// import Router from "vue-router";
 import VueSimpleAlert from "vue-simple-alert";
 import VueAxios from "vue-axios";
 import axios from "axios";
 
-Vue.use(Router);
+// Vue.use(Router);
 Vue.use(VueSimpleAlert);
 Vue.use(VueAxios, axios);
 export default {
