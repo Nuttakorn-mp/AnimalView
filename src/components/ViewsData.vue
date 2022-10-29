@@ -42,6 +42,18 @@ import VueSimpleAlert from "vue-simple-alert";
 import VueAxios from "vue-axios";
 import axios from "axios";
 
+console.log()
+console.log('------- ViewsData component -------')
+console.log("VueSimpleAlert : ")
+console.log(VueSimpleAlert)
+console.log("VueAxios : ")
+console.log(VueAxios)
+console.log("axios : ")
+console.log(axios)
+console.log('-----------------------------------')
+console.log()
+
+
 // Vue.use(Router);
 Vue.use(VueSimpleAlert);
 Vue.use(VueAxios, axios);

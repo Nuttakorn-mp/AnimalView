@@ -5,6 +5,19 @@ import Views from '@/components/Views';
 import ViewsData from '@/components/ViewsData';
 import NotFound from '@/components/NotFound';
 
+console.log()
+console.log('------- router component -------')
+console.log("Vue : ")
+console.log(Vue)
+console.log("Router : ")
+console.log(Router)
+console.log("ViewsData : ")
+console.log(ViewsData)
+console.log("NotFound : ")
+console.log(NotFound)
+console.log('-----------------------------------')
+console.log()
+
 
 Vue.use(Router)
 const routes = [
