@@ -3,7 +3,8 @@
 
     <!-- <p class="header-name" style="left: 80px; top: -5px"> <img src="../assets/original.png" style="width: 269px" /> </p> -->
     <p class="header-name" style="left: 80px; top: -5px"> <img src= "~@/assets/original.png" @error="$event.target.src='/src/assets/original.png'" style="width: 269px" /> </p>
-    <p class="animal-name">{{ $route.params.animalName }}</p>
+    <!-- <p class="animal-name">{{ $route.params.animalName }}</p> -->
+    <p class="animal-name">{{ this.animalName }}</p>
 
     <div class="main-box" id="main-box">
 
@@ -695,12 +696,12 @@ export default {
 }
 .englishName{
   position: absolute;
-  left: 500px;
+  left: 450px;
   top: 8px;
 }
 .technicalTerm{
   position: absolute;
-  left: 500px;
+  left: 450px;
   top: 50px;
 }
 </style>
