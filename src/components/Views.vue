@@ -47,14 +47,14 @@ import Vue from "vue/dist/vue.esm";
 import VueAxios from "vue-axios";
 import axios from "axios";
 
-console.log()
-console.log('------- Views component -------')
-console.log("VueAxios : ")
-console.log(VueAxios.toString)
-console.log("axios : ")
-console.log(axios)
-console.log('-------------------------------')
-console.log()
+// console.log()
+// console.log('------- Views component -------')
+// console.log("VueAxios : ")
+// console.log(VueAxios.toString)
+// console.log("axios : ")
+// console.log(axios)
+// console.log('-------------------------------')
+// console.log()
 
 Vue.use(VueAxios, axios);
 
